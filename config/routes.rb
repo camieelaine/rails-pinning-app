@@ -5,13 +5,19 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'pins#index'
 
-  resources :pins
-  
-  # Display all the pins
-  get '/library' => 'pins#index'
+  #Route with slug name must reside above the pins
+  # Display pin using slug-name in URL. Send it to a method called show_by_name in the PinsController
+  get "pins/name-:slug" => "pins#show_by_name"
 
-  # Display a specific pin
-  get '/pins/:id' => 'pins#show'
+  resources :pins
+
+# Display a specific pin
+  get '/pins/:id' => "pins#show"
+
+  # Display all the pins
+  get '/library' => "pins#index"
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
