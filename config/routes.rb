@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   #Route with slug name must reside above the pins
   # Display pin using slug-name in URL. Send it to a method called show_by_name in the PinsController
-  get "pins/name-:slug" => "pins#show_by_name"
+  get "pins/name-:slug" => 'pins#show_by_name', as: 'pin_by_name'
 
   resources :pins
 
