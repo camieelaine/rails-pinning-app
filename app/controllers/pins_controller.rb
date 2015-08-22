@@ -16,6 +16,42 @@ class PinsController < ApplicationController
     render :show
   end
 
+  # GET /pins/1/edit
+  def edit
+    @pin = Pin.find(params[:id])
+    render :edit
+    #edit_pin_path
+  end
+
+  #Method to update a pin record
+  def update
+
+    @pin = Pin.find(params[:id])
+    if @pin.update_attributes(pin_params)
+      @pin.title = params[:title]
+      @pin.url = params[:url]
+      @pin.text = params[:text]
+      @pin.slug = params[:slug]
+      @pin.category_id = params[:category_id]
+      redirect_to pin_path(@pin)
+    else
+      @pin.errors.full_messages.each do |msg|
+      @errors = "#{@errors} #{msg}."
+      end
+      render :edit
+    end
+
+   # if @pin.valid?
+    #  @pin.save
+     # redirect edit_pin_path(@pin)
+    #else
+     # @pin.errors.full_messages.each do |msg|
+      #  @errors = "#{@errors} #{msg}."
+      #end
+      #render :edit   
+    #end
+  end
+
 # GET /pins/new
   def new
     @pin = Pin.new
