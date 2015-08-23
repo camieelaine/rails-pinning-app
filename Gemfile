@@ -52,3 +52,6 @@ gem 'rails_12factor'
 
 # To add image upload to the pins
 gem 'paperclip'
+
+# aws-sdk gem to store images
+gem 'aws-sdk', '< 2.0'

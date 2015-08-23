@@ -41,5 +41,15 @@ Rails.application.configure do
 
   #Location of the convert program, which is the ImgaeMagick command-line utility that Paperclip needs to access.
   Paperclip.options[:command_path] = "/usr/local/bin/"
+  
+  config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_credentials => {
+    :bucket => "skillcrush-rails",
+    :access_key_id => "AKIAI4Y7CIUPPOFAYN2Q",
+    :secret_access_key => "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"
+      }
+    }
+
 
 end
