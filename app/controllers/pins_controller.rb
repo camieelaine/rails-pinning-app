@@ -33,6 +33,7 @@ class PinsController < ApplicationController
       @pin.text = params[:text]
       @pin.slug = params[:slug]
       @pin.category_id = params[:category_id]
+      @pin.image = params[:image]
       redirect_to pin_path(@pin)
     else
       @pin.errors.full_messages.each do |msg|
@@ -73,7 +74,7 @@ class PinsController < ApplicationController
   
     private
     def pin_params
-      params.require(:pin).permit(:title, :url, :slug, :text, :category_id)
+      params.require(:pin).permit(:title, :url, :slug, :text, :category_id, :image)
     end
 
   

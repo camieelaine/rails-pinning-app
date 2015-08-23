@@ -1,55 +1,8 @@
 
 
 <h1>Edit a Pin</h1>
-<!-- @pin is an instance of the pin class, which we get from the pins_controller.rb @pin is a parameter that is being 
-passed to the form_for method. Can be written form_for @pin  or form_for(@pin) .The form_for methods yields the form builder object. Use |f| or |form_builder_object|-->
-<div class="form-group">
-<% if !@errors.nil? %>
 
-<div class="alert alert-danger alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <%= pluralize(@errors.count, "error") %> prohibited this pin from being saved:
-  <ul>
-	      <% @errors.full_messages.each do |msg| %>
-	        <li><%= msg %></li>
-	      <% end %>
-	    </ul>
-	  </div>
-	<% end %>
-
-</div>
-
-<%= form_for @pin do |form_builder_object| %>
-
-	
-	<div class="form-group">
-		<label for="pin_title">Title</label>
-		<%= form_builder_object.text_field :title, class: 'form-control', id: 'pin_title' %>
-	</div>
-	<div class="form-group">
-		<label for="pin_url">URL</label>
-		<%= form_builder_object.text_field :url, class: 'form-control', id: 'pin_url' %>
-	</div>
-	<div class="form-group">
-		<label for="pin_text">Text</label>
-		<%= form_builder_object.text_field :text, class: 'form-control', id: 'pin_text' %>
-	</div>
-	<div class="form-group">
-		<label for="pin_slug">Slug</label>
-		<%= form_builder_object.text_field :slug, class: 'form-control', id: 'pin_slug' %>
-	</div>
-	<div class="form-group">
-		<label for="pin_category_id">Category</label>
-	</div>
-	<div class="form-group">
-		<%= form_builder_object.collection_select :category_id, Category.all, :id, :name, {prompt: "Select a category"}, {class: "form-control"} %>
-	</div>
-	<div class="form-group">
-		<%= form_builder_object.submit "Create Pin", class: "btn btn-default" %>
-	</div>
-
-<% end %>
-
-
+<%= render :partial => "form", :locals => 
+  { :button_label => "Update Pin"} %>
 
 <%= link_to 'Back', pins_path %>

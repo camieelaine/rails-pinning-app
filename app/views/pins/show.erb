@@ -6,7 +6,9 @@
 </div>
 
 <div class="show-pin">
-  <p><%= "#{@pin.text}" %></p>
+  <p><%= "#{@pin.text}" %>
+    <%= link_to ' Edit Pin', edit_pin_path(@pin), html_options = {class:"fa fa-pencil"} %>
+  </p>
 
   <hr/>
   <p>
@@ -16,7 +18,14 @@
     <a class="url" href="<%= "#{@pin.url}" %>" target="_blank">
       <%= "#{@pin.url}" %>
     </a>
-  </p>
+    <p>
+      <% if @pin.image.url.nil? %>
+              <%= image_tag('rails-logo-thumbnail.png') %>
+            <% else  %>
+           <img src="<%= @pin.image.url(:medium) %>">    
+            <% end %>
+     
+      </p>
 </div>
 <br/>
 <a href="/">

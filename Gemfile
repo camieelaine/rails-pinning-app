@@ -49,3 +49,6 @@ gem 'rspec-rails'
 # Adding 12 factor which includes standards and best practices for modern web apps
 # Log to stdout instead of a log file and Deliver assets in the same way in production and development
 gem 'rails_12factor'
+
+# To add image upload to the pins
+gem 'paperclip'
