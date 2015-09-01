@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+
+  resources :users, except: [:index]
+
+  #sign-up route for users new action
+  get 'signup' => "users#new", as: :signup
+
+  #Login route
+  get 'login' => "users#login", as: :login
+
+  post 'login' => "users#authenticate"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
