@@ -39,7 +39,10 @@ RSpec.describe PinsController do
         url: "http://railswizard.org", 
         slug: "rails-wizard", 
         text: "A fun and helpful Rails Resource",
-        category: Category.find_by_name("rails")}  
+        category_id: "1"
+        #category_id: Category.find_by_name("rails").id
+      }  
+
     end
     
     after(:each) do
@@ -61,7 +64,7 @@ RSpec.describe PinsController do
     
     it 'redirects to the show view' do
       post :create, pin: @pin_hash
-      expect(response).to redirect_to(pin_url(assigns(:pin)))
+      expect(response).to redirect_to(pin_path(assigns(:pin)))
     end
     
     it 'redisplays new form on error' do
@@ -73,14 +76,14 @@ RSpec.describe PinsController do
       expect(response).to render_template(:new)
     end
     
-    #it 'assigns the @errors instance variable on error' do
+    it 'assigns the @errors instance variable on error' do
       # The title is required in the Pin model, so we'll
       # delete the title from the @pin_hash in order
       # to test what happens with invalid parameters
-     # @pin_hash.delete(:title)
-     # post :create, pin: @pin_hash
-     # expect(assigns[:errors].present?).to be(true)
-    #end    
+      @pin_hash.delete(:title)
+      post :create, pin: @pin_hash
+      expect(assigns[:errors].present?).to be(true)
+    end    
     
   end
 
@@ -92,7 +95,8 @@ RSpec.describe PinsController do
         url: "http://railswizard.org", 
         slug: "rails-wizard", 
         text: "A fun and helpful Rails Resource",
-        category: Category.find_by_name("rails")}  
+        category_id: "1"}  
+        @pin = Pin.create(@pin_hash)
     end
     
     after(:each) do
@@ -102,22 +106,24 @@ RSpec.describe PinsController do
       end
     end
     it 'responds with successfully' do
-      get("/pins/#{@pin.id}/edit")
-
+      #get("/pins/id/edit")
+      get :edit, id: @pin.id
       expect(response.success?).to be(true)
     end
    
     
     
     it 'renders the edit view' do
-      get("/pins/id/edit")     
+      #get("pins/#{@pin.id}/edit")   
+      get :edit, id: @pin.id
       expect(response).to render_template(:edit)
     end
     
 
     it 'locates the requested @pin' do
-       get("/pins/id/edit")  
-      expect(assigns(:pin)).should eq(@pin_hash)
+       #get("/pins/#{@pin.id}/edit")
+      get :edit, id: @pin.id  
+      expect(assigns(:pin)).to eq(@pin_hash)
     end
   end
 
