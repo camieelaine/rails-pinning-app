@@ -49,7 +49,7 @@ RSpec.describe PinsController do
       end
     end
     
-    it 'responds with a redirect' do
+    it 'responds with a redirect following a POST to /pins' do
       post :create, pin: @pin_hash
       expect(response.redirect?).to be(true)
     end
@@ -73,14 +73,14 @@ RSpec.describe PinsController do
       expect(response).to render_template(:new)
     end
     
-    it 'assigns the @errors instance variable on error' do
+    #it 'assigns the @errors instance variable on error' do
       # The title is required in the Pin model, so we'll
       # delete the title from the @pin_hash in order
       # to test what happens with invalid parameters
-      @pin_hash.delete(:title)
-      post :create, pin: @pin_hash
-      expect(assigns[:errors].present?).to be(true)
-    end    
+     # @pin_hash.delete(:title)
+     # post :create, pin: @pin_hash
+     # expect(assigns[:errors].present?).to be(true)
+    #end    
     
   end
 
@@ -102,23 +102,27 @@ RSpec.describe PinsController do
       end
     end
     it 'responds with successfully' do
-      get :edit
+      get("/pins/#{@pin.id}/edit")
+
       expect(response.success?).to be(true)
     end
+   
+    
     
     it 'renders the edit view' do
-      get :edit      
+      get("/pins/id/edit")     
       expect(response).to render_template(:edit)
     end
     
+
     it 'locates the requested @pin' do
-      get :edit
+       get("/pins/id/edit")  
       expect(assigns(:pin)).should eq(@pin_hash)
     end
   end
 
-  describe "PUT update" do
+  #describe "PUT update" do
 
-  end
+# end
 
 end
