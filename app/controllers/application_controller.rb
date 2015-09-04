@@ -7,4 +7,13 @@ class ApplicationController < ActionController::Base
 	  @user ||= User.where("id=?",session[:user_id]).first
 	end
 	helper_method :current_user
+
+	def require_login
+      if current_user.nil?
+         @errors = "Your must login to access this page."
+         redirect_to :login   
+      else
+        
+      end
+    end
 end
