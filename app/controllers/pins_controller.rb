@@ -12,6 +12,7 @@ class PinsController < ApplicationController
   def show
     #@pin = Pin.find(pin_params)
     @pin = Pin.find(params[:id])
+    @users = User.pins
   end
 
   def repin
@@ -26,6 +27,7 @@ class PinsController < ApplicationController
   # Search for a Pin using the slug in the URL
   def show_by_name
     @pin = Pin.find_by_slug(params[:slug])
+    @users = User.pins
     render :show
   end
 

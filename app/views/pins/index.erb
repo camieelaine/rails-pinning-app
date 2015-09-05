@@ -41,11 +41,12 @@
         </div>
           <hr/>
           <p class="text"><%= "#{pin.text}" %></p>
-        </div>
-        <%= link_to repin_path(pin), class: "btn btn-default", method: "post" do %>
-          <icon here?>
+        
+        <%= link_to repin_path(pin), method: "post" do %>
+          <i class="fa fa-thumb-tack fa-2x"></i>
           Repin!
         <% end %> 
+        </div>
       </div>
       <% end %>
     </div>

@@ -1,6 +1,5 @@
 <div class="header">
   <h1>Your Pins</h1>
-  <h3>A Collection of Ruby on Rails Resources for Beginners</h3>
       <%= link_to ' Add a Pin', new_pin_path, html_options = {class:"fa fa-plus-circle"} %>
 
 </div>
@@ -40,12 +39,11 @@
           
         </div>
           <hr/>
-          <p class="text"><%= "#{pin.text}" %></p>
-        </div>
-        <%= link_to repin_path(pin), class: "btn btn-default", method: "post" do %>
-          <icon here?>
-          Repin!
-        <% end %> 
+	        <p class="text"><%= "#{pin.text}" %></p>
+	    	<%= link_to repin_path(pin), html_options = {class:"fa fa-thumb-tack fa-2x"}, method: "post" do %>
+         	Repin!
+        	<% end %> 
+    	</div>
       </div>
       <% end %>
     </div>

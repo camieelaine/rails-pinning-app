@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @pins = current_user.pins
-    
+    #@pins = current_user.pins.find(params[:id])
   end
 
   #Login method
