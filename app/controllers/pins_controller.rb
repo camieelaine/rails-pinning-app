@@ -2,17 +2,25 @@ class PinsController < ApplicationController
   before_action :require_login, :index, except: [:show, :show_by_name, :pins]
 
   def index
-    if current_user.nil?
-      @pins = Pin.all
-    else
-     @pins = current_user.pins
-    end
+    #if current_user.nil?
+      @pins = Pin.all #return to showing all pins for pinning
+    #else
+     #@pins = current_user.pins
+    #end
   end
 
   def show
     #@pin = Pin.find(pin_params)
     @pin = Pin.find(params[:id])
   end
+
+  def repin
+    @pin = Pin.find(params[:id])
+    @pin.pinnings.create(user: current_user)
+    redirect_to user_path(current_user)
+  end 
+    
+
 
 
   # Search for a Pin using the slug in the URL

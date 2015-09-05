@@ -42,10 +42,15 @@
           <hr/>
           <p class="text"><%= "#{pin.text}" %></p>
         </div>
+        <%= link_to repin_path(pin), class: "btn btn-default", method: "post" do %>
+          <icon here?>
+          Repin!
+        <% end %> 
       </div>
       <% end %>
     </div>
   <% end %>
 </div>
-
+<div>
+ 
 <hr/>

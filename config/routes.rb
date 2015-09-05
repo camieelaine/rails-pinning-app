@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-
+  # You can have the root of your site routed with "root"
+  root 'pins#index'
+  post 'pins/repin/:id' => "pins#repin", as: 'repin'
   resources :users, except: [:index]
-
   #sign-up route for users new action
   get 'signup' => "users#new", as: :signup
 
@@ -11,11 +12,10 @@ Rails.application.routes.draw do
   post 'login' => "users#authenticate"
 
   delete 'logout/:id' => "users#logout", as: :logout
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  root 'pins#index'
 
   #Route with slug name must reside above the pins
   # Display pin using slug-name in URL. Send it to a method called show_by_name in the PinsController

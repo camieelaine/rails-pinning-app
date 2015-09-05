@@ -1,3 +1,60 @@
+<div class="header">
+  <h1>Your Pins</h1>
+  <h3>A Collection of Ruby on Rails Resources for Beginners</h3>
+      <%= link_to ' Add a Pin', new_pin_path, html_options = {class:"fa fa-plus-circle"} %>
+
+</div>
+<hr/>
+<div class="pins">
+  <% @pins.each_slice(3) do |row| %>
+    <div class="row">
+      <% row.each do |pin| %>     
+
+      <div class="pin-container col-md-4">
+        <div class="pin">
+          <div class="pin-header row">
+    
+          <div class="logo-thumbnail col-xs-3" >
+            <% if "#{pin.category_id}" == "2" %>
+              <%= image_tag('rails-logo-thumbnail.png') %>
+            <% elsif "#{pin.category_id}" == "1" %>
+              <%= image_tag('ruby-logo-thumbnail.png') %>                
+            <% end %>
+          </div>  
+          
+          <div class="pin title col-xs-9">
+            <h4>
+             <%= link_to "#{pin.title}", pin_by_name_path(slug: pin.slug) %>
+            </h4>
+            <a class="url" href="<%= "#{pin.url}" %>">
+              <%= "#{pin.url}" %>
+            </a>
+            <p>
+            <% if pin.image.url.nil? %>
+              <%= image_tag('rails-logo-thumbnail.png') %>
+            <% else  %>
+              <img src="<%= pin.image.url(:small) %>">    
+            <% end %>
+          </p>
+          </div>
+          
+        </div>
+          <hr/>
+          <p class="text"><%= "#{pin.text}" %></p>
+        </div>
+        <%= link_to repin_path(pin), class: "btn btn-default", method: "post" do %>
+          <icon here?>
+          Repin!
+        <% end %> 
+      </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<div>
+ 
+<hr/>
+
 <h1>User Details</h1>
 <p id="notice"><%= notice %></p>
 
