@@ -9,7 +9,6 @@
   <p><%= "#{@pin.text}" %>
     <%= link_to ' Edit Pin', edit_pin_path(@pin), html_options = {class:"fa fa-pencil"} %>
   </p>
-
   <hr/>
   <p>
     <b>Visit <%= "#{@pin.title}" %> at: </b>
@@ -21,11 +20,21 @@
             <% else  %>
            <img src="<%= @pin.image.url(:medium) %>">    
             <% end %>
-     
       </p>
 </div>
 <br/>
- 
+  <div class="pins"><div class="pin-container col-md-4">
+    <div class="repin">
+        <h3>This has been pinned by ... </h3>
+        <% @users.each do |user| %>
+          <%= user.first_name %>
+          <hr/>
+        <% end %>
+      </div>
+  </div>
+</div>
+<div>
+<hr/>
 <a href="/">
   <i class="fa fa-backward"></i>
   Back to Home
