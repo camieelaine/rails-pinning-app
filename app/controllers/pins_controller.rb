@@ -1,5 +1,5 @@
 class PinsController < ApplicationController
-  before_action :require_login, except: [:show, :show_by_name, :pins]
+  before_action :require_login, except: [:show, :index, :show_by_name, :pins]
 
   def index
     #if current_user.nil?
