@@ -8,11 +8,18 @@ class CreatePinnings < ActiveRecord::Migration
     add_foreign_key :pinnings, :users
     add_foreign_key :pinnings, :pins
  
+
     Pin.where("user_id IS NOT NULL").each do |pin|
-      if @user.present?
-        puts "user present: #{@user.id}"
+      puts "got pin #{pin.id}"
+      user = User.find(pin.user_id)
+     
+      if user.present?
+        puts "user present: #{user.id}"
         pin.pinnings.create(user: user)
       end
-    end    
+      
+    end 
+
   end  
+
 end

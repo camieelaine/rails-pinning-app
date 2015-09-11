@@ -14,4 +14,6 @@ class Pin < ActiveRecord::Base
   # Prohibits any file from being uploaded whose content type is not one listed in the array.
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
+  accepts_nested_attributes_for :pinnings 
+
 end

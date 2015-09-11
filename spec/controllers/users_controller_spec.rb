@@ -20,6 +20,21 @@ require 'spec_helper'
 
 RSpec.describe UsersController, type: :controller do
 
+  before(:each) do 
+    @user = FactoryGirl.build(:user)
+  end
+  after(:each) do
+    @user.destroy
+  end
+  let(:valid_attributes) {
+    {
+      first_name: @user.first_name,
+      last_name: @user.last_name,
+      email: @user.email,
+      password: @user.password
+    }
+  }  
+
   # This should return the minimal set of attributes required to create a valid
   # User. As you add validations to User, be sure to
   # adjust the attributes here as well.

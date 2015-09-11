@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :boards
+
   # You can have the root of your site routed with "root"
   root 'pins#index'
   post 'pins/repin/:id' => "pins#repin", as: 'repin'
@@ -9,7 +11,8 @@ Rails.application.routes.draw do
 
   post 'login' => "users#authenticate"
 
-  delete 'logout/:id' => "users#logout", as: :logout
+ # delete 'logout/:id' => "users#logout", as: :logout
+  delete 'logout' => "users#logout", as: :logout
   #sign-up route for users new action
   get 'signup' => "users#new", as: :signup
 

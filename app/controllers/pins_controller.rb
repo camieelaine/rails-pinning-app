@@ -59,17 +59,15 @@ class PinsController < ApplicationController
   
   # Create a new pin
   def create
-    @pin = Pin.create(pin_params)
-    #@pin = Pin.create(params[:pin])
-    if @pin.valid?
-      @pin.user_id = current_user.id
-      @pin.save
+    @pin = current_user.pins.new(pin_params)
+    if @pin.save
       redirect_to pin_path(@pin)
     else
-      @errors = @pin.errors
-      render :new
+     @errors = @pin.errors
+     render :new
     end
   end
+
   
     private
     def pin_params

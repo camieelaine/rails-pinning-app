@@ -50,6 +50,14 @@ passed to the form_for method. Can be written form_for @pin  or form_for(@pin) .
 	  <p class="help-block">Allowed file types: gif, jpeg, jpg, png.</p>
 	</div>
 
+	<%= form_builder_object.fields_for :pinning do |p| %>
+	  <div class="form-group">
+	    <label>Which board?</label>
+	    <%= p.collection_select(:board_id, current_user.boards, :id, :name, {}, {class: "form-control"}) %>
+	    <%= p.hidden_field :user_id, value: current_user.id %>    
+	  </div>
+	<% end %> 
+
 	<div class="form-group">
 		<%= form_builder_object.submit button_label, class: "btn btn-default" %>
 	</div>
