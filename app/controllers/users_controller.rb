@@ -10,10 +10,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
     @pins = current_user.pins
-    #@pins = current_user.pins.find(params[:id])
+    @pins = current_user.pins
   end
+  
 
   #Login method
   def login

@@ -9,10 +9,9 @@ class BoardsController < ApplicationController
   # GET /boards/1
   # GET /boards/1.json
   def show
-    @board = Board.find(params[:id])
-    @pin = Pin.find(params[:id])
-    @users = @pin.users
+    @pins = @board.pins
   end
+
 
   # GET /boards/new
   def new

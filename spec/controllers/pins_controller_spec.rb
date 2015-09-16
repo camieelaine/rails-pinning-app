@@ -1,6 +1,17 @@
 require 'spec_helper'
 RSpec.describe PinsController do
 
+  before(:each) do 
+      @user = FactoryGirl.create(:user)
+      login(@user)
+    end
+    after(:each) do
+      if !@user.destroyed?
+        @user.pins.destroy_all
+        @user.destroy
+      end
+  end
+
 	describe "GET index" do
  
     it 'renders the index template' do
@@ -50,6 +61,11 @@ RSpec.describe PinsController do
       pin = Pin.find_by_slug("rails-wizard")
       if !pin.nil?
         pin.destroy
+      end
+       if !@user.destroyed?
+        @user.pinnings.destroy_all
+        @user.boards.destroy_all 
+        @user.destroy
       end
     end
     

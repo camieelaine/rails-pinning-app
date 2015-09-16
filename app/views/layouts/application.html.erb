@@ -37,7 +37,7 @@
     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
       <% current_user.boards.each do |board| %>
         <li role="presentation">
-          <a role="menuitem" tabindex="-1" href="<%= "#{board.name}" %>">
+          <a role="menuitem" tabindex="-1" href="<%= board_path(board) %>">
             <%= "#{board.name}" %>
           </a>
         </li>
