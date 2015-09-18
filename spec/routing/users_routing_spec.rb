@@ -1,11 +1,7 @@
-require "rails_helper"
+require "spec_helper"
 
 RSpec.describe UsersController, type: :routing do
   describe "routing" do
-
-    it "routes to #index" do
-      expect(:get => "/users").to route_to("users#index")
-    end
 
     it "routes to #new" do
       expect(:get => "/users/new").to route_to("users#new")
@@ -23,12 +19,8 @@ RSpec.describe UsersController, type: :routing do
       expect(:post => "/users").to route_to("users#create")
     end
 
-    it "routes to #update via PUT" do
+    it "routes to #update" do
       expect(:put => "/users/1").to route_to("users#update", :id => "1")
-    end
-
-    it "routes to #update via PATCH" do
-      expect(:patch => "/users/1").to route_to("users#update", :id => "1")
     end
 
     it "routes to #destroy" do
