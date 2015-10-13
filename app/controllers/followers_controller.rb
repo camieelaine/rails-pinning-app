@@ -5,6 +5,7 @@ class FollowersController < ApplicationController
   # GET /followers.json
   def index
     @followers = Follower.all
+    @followed = current_user.followed
 
   end
 
@@ -14,18 +15,14 @@ class FollowersController < ApplicationController
     @users = current_user.not_followed
   end
 
-  def followed
-    #Follower.where("follower_id=?", self.id)
-    Follower.where("follower_id=?", self.id).map{|f| f.user }
-  end
-
-  def not_followed
-    User.all - self.followed - [self]
-  end
+  
 
   # GET /followers/1
   # GET /followers/1.json
   def show
+    #loop through @followed and display each user and their boards
+    
+
   end
   
   # GET /followers/1/edit

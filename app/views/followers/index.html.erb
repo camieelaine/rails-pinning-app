@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Followers</h1>
+<h1>Here's Who is Following You ...</h1>
 
 <table>
   <thead>
@@ -14,7 +14,7 @@
   <tbody>
     <% @followers.each do |follower| %>
       <tr>
-        <td><%= follower.user %></td>
+        <td><%= follower.user.first_name %></td>
         <td><%= follower.follower_id %></td>
         <td><%= link_to 'Show', follower %></td>
         <td><%= link_to 'Edit', edit_follower_path(follower) %></td>
